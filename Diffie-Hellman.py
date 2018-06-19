@@ -14,18 +14,32 @@ def quick_pow(a, b, p):
 def cal(q, a, X):
     return quick_pow(a, X, q)
 
+def A(q, a, Xa):
+    return q, a, cal(q, a, Xa)
+
+def B(q, a, Xb):
+    return q, a, cal(q, a, Xb)
+
+def getKa(q, Yb, Xa):
+    return quick_pow(Yb, Xa, q)
+
+def getKb(q, Ya, Xb):
+    return quick_pow(Ya, Xb, q)
+
 #p is a prime number, a is a primitive root of p
 #A (q, a, Ya)  B(q, a, Yb)
 #Xa, Xb is private, q, a, ya, yb is public
 if __name__ == '__main__':
     q = 97; a = 5;
+    '''
     Xa = random.randint(1, 100)
     Xb = random.randint(1, 100)
-    #Xa = 36; Xb = 58;
-    Ya = cal(q, a, Xa)
-    Yb = cal(q, a, Xb)
-    Ka = quick_pow(Yb, Xa, q)
-    Kb = quick_pow(Ya, Xb, q)
+    '''
+    Xa = 36; Xb = 58;
+    q1, a1, Ya = A(q, a, Xa)
+    q2, a2, Yb = B(q1, a1, Xb)
+    Ka = getKa(q, Yb, Xa)
+    Kb = getKb(q, Ya, Xb)
     if Ka == Kb:
         print('K = ', Ka)
         print('加密成功')
