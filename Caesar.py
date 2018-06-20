@@ -4,6 +4,9 @@ class Caesar:
         self.charset = {}
         self.mp = {}
 
+    def setK(self, k):
+        self.k = k
+
     def setCharset(self):
         for i in range(26):
             self.charset[chr(ord('a')+i)] = i
@@ -39,3 +42,7 @@ if __name__ == '__main__':
     test = Caesar(3)
     test.setCharset()
     print(test.Encrypt(s))
+    ct = 'gcua vq dtgcm'
+    for k in range(26):
+        test.setK(k)
+        print(test.Decrypt(ct))
